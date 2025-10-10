@@ -1,0 +1,75 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive timeline of total burned area per year (2015-2023) with brush/zoom",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
+  },
+  "vconcat": [
+    {
+      "width": 500,
+      "height": 280,
+      "layer": [
+        {
+            "mark": {"type": "area", "color": "#ff7f0e"},
+            "transform": [
+                { "filter": "datum.ignition_date !== null && datum.ignition_date !== ''" },
+                { "timeUnit": "year", "field": "ignition_date", "as": "year" },
+                { "calculate": "year(datum.year)", "as": "yearNum" },
+                { "filter": "datum.yearNum >= 2015 && datum.yearNum <= 2023" },
+                { "aggregate": [{"op": "sum", "field": "area_ha", "as": "total_area"}], "groupby": ["year"] }
+                ],
+            "encoding": {
+                "x": {
+                "field": "year",
+                "type": "temporal",
+                "scale": {"domain": {"param": "brush"}},
+                "axis": {"title": "", "tickCount": 9}
+            },
+            "y": {
+                "field": "total_area",
+                "type": "quantitative",
+                "axis": {"title": "Total burned area (ha)"}
+            },
+            "tooltip": [
+                {"field": "year", "type": "temporal", "title": "Year", "format": "%Y"},
+                {"field": "total_area", "type": "quantitative", "title": "Total area (ha)", "format": ","}
+            ]
+        }
+    },
+            {
+          "data": {
+            "values": [
+              {"year": "2019-01-01", "total_area": 13606925}
+            ]
+          },
+          "layer": [
+            {
+              "mark": {"type": "rule", "color": "black", "strokeDash": [4, 2], "size": 2},
+              "encoding": {
+                "x": {"field": "year", "type": "temporal"}
+              }
+            },
+            {
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "dx": 5,
+                "dy": -10,
+                "color": "black",
+                "fontWeight": "bold",
+                "fontSize": 12
+              },
+              "encoding": {
+                "x": {"field": "year", "type": "temporal"},
+                "y": {"field": "total_area", "type": "quantitative"},
+                "text": {"value": "2019 – 13,606,925 ha burned"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+    
+  ]
+}
