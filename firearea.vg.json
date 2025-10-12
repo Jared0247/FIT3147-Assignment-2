@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive timeline of total burned area per year (2015–2023) with brush/zoom",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
+  },
+  "vconcat": [
+    {
+      "width": 500,
+      "height": 280,
+      "mark": {"type": "area", "color": "#ff7f0e"},
+      "transform": [
+        { "filter": "datum.ignition_date !== null && datum.ignition_date !== ''" },
+        { "timeUnit": "year", "field": "ignition_date", "as": "year" },
+        { "calculate": "year(datum.year)", "as": "yearNum" },
+        { "filter": "datum.yearNum >= 2015 && datum.yearNum <= 2023" },
+        {
+          "aggregate": [
+            {"op": "sum", "field": "area_ha", "as": "total_area"}
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": "", "tickCount": 9}
+        },
+        "y": {
+          "field": "total_area",
+          "type": "quantitative",
+          "axis": {"title": "Total burned area (ha)"}
+        },
+        "tooltip": [
+          {"field": "year", "type": "temporal", "title": "Year", "format": "%Y"},
+          {"field": "total_area", "type": "quantitative", "title": "Total area (ha)", "format": ","}
+        ]
+      }
+    },
+    {
+      "width": 500,
+      "height": 80,
+      "mark": {"type": "area", "color": "#ff7f0e"},
+      "params": [
+        {
+          "name": "brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "transform": [
+        { "filter": "datum.ignition_date !== null && datum.ignition_date !== ''" },
+        { "timeUnit": "year", "field": "ignition_date", "as": "year" },
+        { "calculate": "year(datum.year)", "as": "yearNum" },
+        { "filter": "datum.yearNum >= 2015 && datum.yearNum <= 2023" },
+        {
+          "aggregate": [
+            {"op": "sum", "field": "area_ha", "as": "total_area"}
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "axis": {"title": "Year", "tickCount": 9}
+        },
+        "y": {
+          "field": "total_area",
+          "type": "quantitative",
+          "axis": {"tickCount": 3, "grid": false}
+        }
+      }
+    }
+  ]
+}
