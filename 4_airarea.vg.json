@@ -1,0 +1,74 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive area chart showing average air pollution across Australian states (2017–2023)",
+  "config": {"view": {"continuousWidth": 700, "continuousHeight": 300, "stroke": null}},
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
+  },
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 300,
+      "mark": {
+        "type": "area",
+        "color": "#1f77b4"
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {"op": "mean", "field": "air_quality", "as": "avg_air_pollution"}
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": "Year", "tickCount": 7, "format": "d"}
+        },
+        "y": {
+          "field": "avg_air_pollution",
+          "type": "quantitative",
+          "axis": {"title": "Average Air Pollution"}
+        },
+        "tooltip": [
+          {"field": "year", "type": "quantitative", "title": "Year", "format": "d"},
+          {"field": "avg_air_pollution", "type": "quantitative", "title": "Average Air Pollution", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "width": 800,
+      "height": 80,
+      "mark": {"type": "area", "color": "#1f77b4"},
+      "params": [
+        {
+          "name": "brush",
+          "select": {"type": "interval", "encodings": ["x"]}
+        }
+      ],
+      "transform": [
+        {
+          "aggregate": [
+            {"op": "mean", "field": "air_quality", "as": "avg_air_pollution"}
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "axis": {"title": "Year", "tickCount": 7, "format": "d"}
+        },
+        "y": {
+          "field": "avg_air_pollution",
+          "type": "quantitative",
+          "axis": {"tickCount": 3, "grid": false}
+        }
+      }
+    }
+  ]
+}
