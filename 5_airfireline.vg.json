@@ -30,7 +30,7 @@
         "y": {
           "field": "avg_air_pollution",
           "type": "quantitative",
-          "axis": {"title": "Average Air Pollution (AQI)", "titleColor": "#1f77b4"},
+          "axis": {"title": "Average Air Pollution", "titleColor": "#1f77b4"},
           "scale": {"domainMin": 0}
         },
         "tooltip": [
