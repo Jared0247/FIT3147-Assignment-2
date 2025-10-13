@@ -1,73 +1,142 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Australian Bushfires Visualisations</title>
-    <!-- Import Vega & Vega-Lite -->
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  <meta charset="UTF-8">
+  <title>Australian Bushfires Visualisations</title>
 
-    <!-- Import pure.css -->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Pure.css for layout -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ"
+        crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Optional CSS file (if you want to include your own styles later) -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #222;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .textbox {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .textbox p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .vis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .vis-container {
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+
+    hr.hr3 {
+      border: none;
+      border-top: 2px solid #ddd;
+      margin: 40px 0;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: 700;
+      margin-top: 0;
+    }
+
+    @media (max-width: 800px) {
+      .vis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="page" style="display:flex;flex-direction:column;align-items:center;">
+  <div class="page">
 
-        <h1>Australian Bushfires Data Visualisations</h1>
-        <p>Interactive Vega-Lite visualisations exploring Australian bushfire data from 2015–2023.</p>
+    <h1>Australian Bushfires Data Visualisations</h1>
 
-        <hr class="hr3">
-
-        <!-- ============================ -->
-        <!-- Visualisation 1 -->
-        <!-- ============================ -->
-        <h2>Visualisation 1: Fire Types by Year (Interactive Pie Chart)</h2>
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div id="vis1" class="vis-container"></div>
-            </div>
-        </div>
-        <p>This pie chart shows the proportion of different fire types (Prescribed Burn, Bushfire, Unknown) across years from 2015 to 2023. 
-           Use the slider to explore year-by-year changes.</p>
-
-        <hr class="hr3">
-
-        <!-- ============================ -->
-        <!-- Visualisation 2 -->
-        <!-- ============================ -->
-        <h2>Visualisation 2: Total Burned Area Over Time</h2>
-        <div class="pure-g">
-            <div class="pure-u-1-1">
-                <div id="vis2" class="vis-container"></div>
-            </div>
-        </div>
-        <p>This area chart shows the total area burned each year from 2015–2023. 
-           The year 2019, which had the largest burned area, is annotated.</p>
-
-        <hr class="hr3">
-
+    <div class="textbox">
+      <p>
+        This dashboard explores the patterns and impact of Australian bushfires between 2015 and 2023. 
+        Use the interactive visualisations to explore how fire types, burned areas, air quality, and state-level distributions changed over time.
+      </p>
     </div>
 
-    <script type="text/javascript">
-        var specVis1 = "1_interactivepie.vg.json";
-        vegaEmbed('#vis1', specVis1);
-      
-        var specVis2 = "2_areagraph.vg.json";
-        vegaEmbed('#vis2', specVis2);
-    </script>
+    <!-- Row 1: Map (left) + Pie (right) -->
+    <div class="vis-grid">
+      <div class="vis-container" id="vis3"></div>
+      <div class="vis-container" id="vis1"></div>
+    </div>
+
+    <div class="textbox">
+      <p>
+        The map (left) shows the geographic distribution of fire incidents across Australian states, 
+        while the pie chart (right) highlights the proportions of different fire types per year. 
+        Together, these visualisations illustrate how both the location and causes of fires vary annually.
+      </p>
+    </div>
+
+    <!-- Row 2: Area chart (left) + Air quality (right) -->
+    <div class="vis-grid">
+      <div class="vis-container" id="vis2"></div>
+      <div class="vis-container" id="vis4"></div>
+    </div>
+
+    <!-- Row 3: Air pollution vs burned area comparison -->
+    <div class="vis-container" id="vis5"></div>
+
+  </div>
+
+  <!-- Load Vega visualisations -->
+  <script type="text/javascript">
+    vegaEmbed('#vis1', '1_interactivepie.vg.json');
+    vegaEmbed('#vis2', '2_areagraph.vg.json');
+    vegaEmbed('#vis3', '3_chloroplethmap.vg.json');
+    vegaEmbed('#vis4', '4_airarea.vg.json');
+    vegaEmbed('#vis5', '5_airfireline.vg.json');
+  </script>
 
 </body>
-
 </html>
+
 
