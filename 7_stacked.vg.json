@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Air Pollution Contribution by State (2017–2023)",
+  "description": "Stacked bar chart showing how each state contributes to total average air pollution per year.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
+  },
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "air_quality",
+      "type": "quantitative",
+      "title": "Total Air Quality Index (AQI)"
+    },
+    "color": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State",
+      "scale": {"scheme": "tableau10"}
+    },
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "year", "type": "ordinal", "title": "Year"},
+      {
+        "aggregate": "sum",
+        "field": "air_quality",
+        "type": "quantitative",
+        "title": "Air Quality (AQI)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "width": 700,
+  "height": 400,
+  "config": {
+    "legend": {"orient": "right", "titleFontSize": 12, "labelFontSize": 10},
+    "view": {"stroke": null}
+  }
+}
