@@ -136,19 +136,30 @@
 
     <div class="textbox">
       <p>
-        The graph (left) shows the total burned area of fire incidents across the years, 
-        the graph (right) shows the average air pollution across the years. 
-        The graphs are then merged together to show their relationship.
+        Now lets look at the data of each state.
+        The scatter plot (left) compares the number of fires and total burned area across states and years, 
+        while the stacked bar chart (right) illustrates how much each state contributes to Australia's overall air pollution annually.
       </p>
     </div>
 
-    <!-- Row 2: Area chart (left) + Air quality (right) -->
+    <div class="vis-grid">
+      <div class="vis-container" id="vis6"></div>
+      <div class="vis-container" id="vis7"></div>
+    </div>
+
+    <div class="textbox">
+      <p>
+        The graph (left) shows the total burned area of fire incidents across the years, 
+        while the graph (right) shows the average air pollution across the years. 
+        These visualisations are later merged together to show their correlation.
+      </p>
+    </div>
+
     <div class="vis-grid">
       <div class="vis-container" id="vis2"></div>
       <div class="vis-container" id="vis4"></div>
     </div>
 
-    <!-- Row 3: Air pollution vs burned area comparison -->
     <div class="vis-container" id="vis5"></div>
 
   </div>
@@ -160,7 +171,10 @@
     vegaEmbed('#vis3', '3_chloroplethmap.vg.json');
     vegaEmbed('#vis4', '4_airarea.vg.json');
     vegaEmbed('#vis5', '5_airfireline.vg.json');
+    vegaEmbed('#vis6', '6_scatter.vg.json');
+    vegaEmbed('#vis7', '7_stacked.vg.json');
   </script>
 
 </body>
 </html>
+
