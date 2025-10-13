@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Comparison of average air pollution and total burned area in Australia (2017–2023)",
+  "width": 800,
+  "height": 400,
+  "config": {"view": {"stroke": null}},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.year >= 2017 && datum.year <= 2023"
+        },
+        {
+          "aggregate": [
+            {"op": "mean", "field": "air_quality", "as": "avg_air_pollution"}
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "mark": {"type": "line", "color": "#1f77b4", "point": true},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "axis": {"title": "Year", "tickCount": 7, "format": "d"}
+        },
+        "y": {
+          "field": "avg_air_pollution",
+          "type": "quantitative",
+          "axis": {"title": "Average Air Pollution (AQI)", "titleColor": "#1f77b4"},
+          "scale": {"domainMin": 0}
+        },
+        "tooltip": [
+          {"field": "year", "type": "quantitative", "title": "Year", "format": "d"},
+          {"field": "avg_air_pollution", "type": "quantitative", "title": "Avg Air Pollution", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
+      },
+      "transform": [
+        { "filter": "datum.ignition_date !== null && datum.ignition_date !== ''" },
+        { "timeUnit": "year", "field": "ignition_date", "as": "year" },
+        { "calculate": "year(datum.year)", "as": "yearNum" },
+        { "filter": "datum.yearNum >= 2017 && datum.yearNum <= 2023" },
+        {
+          "aggregate": [
+            {"op": "sum", "field": "area_ha", "as": "total_burned_area"}
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "mark": {"type": "line", "color": "#d62728", "point": true, "strokeDash": [4, 2]},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "axis": {"title": "Year", "tickCount": 7, "format": "%Y"}
+        },
+        "y": {
+          "field": "total_burned_area",
+          "type": "quantitative",
+          "axis": {
+            "title": "Total Burned Area (ha)",
+            "titleColor": "#d62728"
+          },
+          "scale": {"domainMin": 0}
+        },
+        "tooltip": [
+          {"field": "year", "type": "temporal", "title": "Year", "format": "%Y"},
+          {"field": "total_burned_area", "type": "quantitative", "title": "Total Burned Area (ha)", "format": ","}
+        ]
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "independent"}},
+  "title": {
+    "text": "Air Pollution and Burned Area Comparison (2017–2023)",
+    "anchor": "middle",
+    "fontSize": 16
+  }
+}
