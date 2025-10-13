@@ -61,6 +61,6 @@
       {"field": "total_area", "type": "quantitative", "title": "Total Burned Area (ha)", "format": ","}
     ]
   },
-  "width": 700,
+  "width": 600,
   "height": 400
 }
