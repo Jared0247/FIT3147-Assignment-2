@@ -82,7 +82,6 @@
       align-items: center;
     }
 
-    /* Make smaller visuals fit neatly */
     #vis6, #vis7 {
       transform: scale(0.9);
       transform-origin: center;
@@ -116,11 +115,6 @@
         grid-template-columns: 1fr;
         max-width: 700px;
       }
-
-      #vis6, #vis7 {
-        transform: scale(1);
-        max-width: 100%;
-      }
     }
   </style>
 </head>
@@ -149,34 +143,30 @@
 
     <div class="textbox">
       <p>
+        Now lets look at the data of each state.
+        The scatter plot (left) compares the number of fires and total burned area across states and years, 
+        while the stacked bar chart (right) illustrates how much each state contributes to Australia's overall air pollution annually.
+      </p>
+    </div>
+
+    <div class="vis-grid">
+      <div class="vis-container" id="vis6"></div>
+      <div class="vis-container" id="vis7"></div>
+    </div>
+
+    <div class="textbox">
+      <p>
         The graph (left) shows the total burned area of fire incidents across the years, 
         while the graph (right) shows the average air pollution across the years. 
         These visualisations are later merged together to show their correlation.
       </p>
     </div>
 
-    <!-- Row 2: Area chart (left) + Air quality (right) -->
     <div class="vis-grid">
       <div class="vis-container" id="vis2"></div>
       <div class="vis-container" id="vis4"></div>
     </div>
 
-    <!-- 🔹 New Textbox Between Sections -->
-    <div class="textbox">
-      <p>
-        The next section provides deeper insight into the relationship between bushfire activity and air quality. 
-        The scatter plot (left) compares the number of fires and total burned area across states and years, 
-        while the stacked bar chart (right) illustrates how much each state contributes to Australia's overall air pollution annually.
-      </p>
-    </div>
-
-    <!-- Row 3: Scatter (left) + Stacked (right) -->
-    <div class="vis-grid">
-      <div class="vis-container" id="vis6"></div>
-      <div class="vis-container" id="vis7"></div>
-    </div>
-
-    <!-- Row 4: Air pollution vs burned area comparison -->
     <div class="vis-container" id="vis5"></div>
 
   </div>
@@ -194,4 +184,3 @@
 
 </body>
 </html>
-
