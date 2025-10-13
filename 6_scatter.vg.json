@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Relationship Between Fire Count and Total Burned Area (2015–2023)",
+  "description": "Each point represents a state in a given year, showing how the number of fires relates to total burned area.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.ignition_date !== null && datum.ignition_date !== ''"
+    },
+    {
+      "calculate": "year(toDate(datum.ignition_date))",
+      "as": "year"
+    },
+    {
+      "filter": "datum.year >= 2015 && datum.year <= 2023"
+    },
+    {
+      "aggregate": [
+        {"op": "count", "as": "fire_count"},
+        {"op": "sum", "field": "area_ha", "as": "total_area"}
+      ],
+      "groupby": ["state", "year"]
+    }
+  ],
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "size": 120,
+    "opacity": 0.8
+  },
+  "encoding": {
+    "x": {
+      "field": "fire_count",
+      "type": "quantitative",
+      "title": "Number of Fire Events",
+      "axis": {"grid": true},
+      "scale": {"type": "log"}
+
+    },
+    "y": {
+      "field": "total_area",
+      "type": "quantitative",
+      "title": "Total Burned Area (ha)",
+      "axis": {"grid": true},
+      "scale": {"type": "log"}
+
+    },
+    "color": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State",
+      "scale": {"scheme": "tableau10"}
+    },
+    "shape": {"field": "state", "type": "nominal"},
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "year", "type": "quantitative", "title": "Year"},
+      {"field": "fire_count", "type": "quantitative", "title": "Number of Fires"},
+      {"field": "total_area", "type": "quantitative", "title": "Total Burned Area (ha)", "format": ","}
+    ]
+  },
+  "width": 700,
+  "height": 400
+}
