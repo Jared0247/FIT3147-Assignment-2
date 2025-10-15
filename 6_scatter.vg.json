@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Relationship Between Fire Count and Total Burned Area (2015–2023)",
-  "description": "Each point represents a state in a given year, showing how the number of fires relates to total burned area.",
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
   },
