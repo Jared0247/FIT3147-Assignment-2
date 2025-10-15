@@ -3,22 +3,14 @@
   "title": "Number of Fire Events by State (2015–2023)",
   "width": 700,
   "height": 500,
-  "projection": {
-    "type": "mercator",
-    "center": [137, -24.5],
-    "scale": 800
-  },
+  "projection": {"type": "mercator", "center": [134, -28.5], "scale": 650},
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/ne_110m_graticules_30.topojson",
         "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
       },
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#cccccc",
-        "strokeWidth": 0.5
-      }
+      "mark": {"type": "geoshape", "stroke": "#cccccc", "strokeWidth": 0.5}
     },
     {
       "data": {
@@ -56,8 +48,16 @@
           }
         },
         "tooltip": [
-          {"field": "properties.STE_NAME16", "type": "nominal", "title": "State"},
-          {"field": "Number of Fires", "type": "quantitative", "title": "Fire Count"}
+          {
+            "field": "properties.STE_NAME16",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Number of Fires",
+            "type": "quantitative",
+            "title": "Fire Count"
+          }
         ]
       }
     }
