@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <title>Australian Bushfires Visualisations</title>
 
-  <!-- Vega & Vega-Lite -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
 
   <style>
@@ -24,72 +22,81 @@
     }
 
     .page {
-      max-width: 1100px;
       width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-sizing: border-box;
     }
 
     h1 {
       text-align: center;
       font-size: 2.2em;
       font-weight: 900;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .textbox {
-      background: #fff;
+      background: #ffffff;
       border-radius: 10px;
       padding: 20px;
-      margin: 40px 0;
+      margin: 30px auto;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-width: 900px;
+      max-width: 950px;
       text-align: center;
+    }
+
+    .textbox p {
+      margin: 0;
       line-height: 1.6;
-      box-sizing: border-box;
     }
 
     .vis-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 30px;
-      margin: 0 auto 40px auto;
+      margin-bottom: 30px;
       width: 100%;
       max-width: 1000px;
-      justify-items: center;
-      align-items: center;
-      box-sizing: border-box;
+      justify-content: center;
     }
 
     .vis-container {
-      background: #fff;
+      background: white;
       border-radius: 8px;
-      padding: 5px;
+      padding: 10px;
       box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 480px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-sizing: border-box;
     }
 
     #vis5 {
       width: 100%;
       max-width: 1000px;
-      margin: 0 auto 40px auto;
-      box-sizing: border-box;
+      margin: 0 auto 30px auto;
+    }
+
+    hr.hr3 {
+      border: none;
+      border-top: 2px solid #ddd;
+      margin: 40px 0;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: 700;
+      margin-top: 0;
     }
 
     @media (max-width: 900px) {
       .vis-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .vis-container {
         max-width: 700px;
       }
     }
@@ -97,16 +104,18 @@
 </head>
 
 <body>
+
   <div class="page">
 
     <h1>Australian Bushfires Data Visualisations</h1>
 
     <div class="textbox">
       <p>
-        This dashboard explores the patterns and impact of Australian bushfires between 2015 and 2023, 
-        along with air pollution levels to see if a relationship exists. The map (left) shows the geographic 
-        distribution of fire incidents, while the pie chart (right) highlights the proportions of different 
-        fire types per year. Use the slider to explore year-by-year changes.
+        This dashboard explores the patterns and impact of Australian bushfires between 2015 and 2023. Along with the air pollution to see if a relationship is present within the two.
+        First, lets look at some visualizations regarding bushfires across Australia.
+        The map (left) shows the geographic distribution of fire incidents across Australian states, 
+        while the pie chart (right) highlights the proportions of different fire types per year, it is interactible to allow you to run through each year to see the differences. 
+        Together, these visualisations illustrate how both the location and causes of fires vary annually.
       </p>
     </div>
 
@@ -117,9 +126,9 @@
 
     <div class="textbox">
       <p>
-        Now let’s look at state-level data. The scatter plot (left) compares the number of fires and total 
-        burned area across states and years, while the stacked bar chart (right) shows how much each state 
-        contributes to Australia's total air pollution.
+        Now lets look at the data of each state.
+        The scatter plot (left) compares the number of fires and total burned area across states and years, 
+        while the stacked bar chart (right) illustrates how much each state contributes to Australia's overall air pollution annually.
       </p>
     </div>
 
@@ -130,8 +139,10 @@
 
     <div class="textbox">
       <p>
-        The graphs below show total burned area (left) and average air pollution (right) from 2015–2023. 
-        These are later combined to reveal a correlation between the two.
+        The graph (left) shows the total burned area of fire incidents across the years, 
+        while the graph (right) shows the average air pollution across the years. 
+        These visualisations are later merged together to show their correlation.
+        Do you think that the amount of burn areas and air pollution have a relationship with each other?
       </p>
     </div>
 
@@ -144,14 +155,13 @@
 
     <div class="textbox">
       <p>
-        The results confirm a strong relationship between burned area and air pollution—except for 2017, 
-        which appears to be an outlier.
+        The answer is yes! Other than 2017 as an outlier. As the burned area rises, the air pollution rises with it, following the trend.
       </p>
     </div>
 
   </div>
 
-  <script>
+  <script type="text/javascript">
     vegaEmbed('#vis1', '1_interactivepie.vg.json');
     vegaEmbed('#vis2', '2_areagraph.vg.json');
     vegaEmbed('#vis3', '3_chloroplethmap.vg.json');
@@ -160,5 +170,6 @@
     vegaEmbed('#vis6', '6_scatter.vg.json');
     vegaEmbed('#vis7', '7_stacked.vg.json');
   </script>
+
 </body>
 </html>
