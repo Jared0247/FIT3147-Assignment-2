@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Air Pollution Contribution by State (2017–2023)",
-  "description": "Stacked bar chart showing how each state contributes to total average air pollution per year.",
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
   },
