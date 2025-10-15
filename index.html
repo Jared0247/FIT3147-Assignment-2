@@ -4,21 +4,12 @@
   <meta charset="UTF-8">
   <title>Australian Bushfires Visualisations</title>
 
-  <!-- Vega & Vega-Lite -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-  <!-- Pure.css for layout -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
-        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ"
-        crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
 
-  <!-- Custom CSS -->
   <style>
     body {
       font-family: 'Source Sans Pro', sans-serif;
@@ -123,12 +114,11 @@
         This dashboard explores the patterns and impact of Australian bushfires between 2015 and 2023. Along with the air pollution to see if a relationship is present within the two.
         First, lets look at some visualizations regarding bushfires across Australia.
         The map (left) shows the geographic distribution of fire incidents across Australian states, 
-        while the pie chart (right) highlights the proportions of different fire types per year. 
+        while the pie chart (right) highlights the proportions of different fire types per year, it is interactible to allow you to run through each year to see the differences. 
         Together, these visualisations illustrate how both the location and causes of fires vary annually.
       </p>
     </div>
 
-    <!-- Row 1: Map (left) + Pie (right) -->
     <div class="vis-grid">
       <div class="vis-container" id="vis3"></div>
       <div class="vis-container" id="vis1"></div>
@@ -152,6 +142,7 @@
         The graph (left) shows the total burned area of fire incidents across the years, 
         while the graph (right) shows the average air pollution across the years. 
         These visualisations are later merged together to show their correlation.
+        Do you think that the amount of burn areas and air pollution have a relationship with each other?
       </p>
     </div>
 
@@ -162,6 +153,12 @@
 
     <div class="vis-container" id="vis5"></div>
 
+  </div>
+
+  <div class="textbox">
+      <p>
+        The answer is yes! Other than 2017 as an outlier. As the burned area rises, the air pollution rises with it, following the trend.
+      </p>
   </div>
 
   <!-- Load Vega visualisations -->
