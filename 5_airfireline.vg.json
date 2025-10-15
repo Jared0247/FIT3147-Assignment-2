@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Comparison of average air pollution and total burned area in Australia (2017–2023)",
-  "width": 800,
+  "width": 700,
   "height": 400,
   "config": {"view": {"stroke": null}},
   "layer": [
