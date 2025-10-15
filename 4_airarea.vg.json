@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Interactive area chart showing average air pollution across Australian states (2017–2023)",
   "config": {"view": {"continuousWidth": 700, "continuousHeight": 300, "stroke": null}},
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
