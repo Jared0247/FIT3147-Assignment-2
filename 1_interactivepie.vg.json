@@ -6,8 +6,12 @@
 
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
-  },
-
+  }, 
+  "config": {
+  "view": {
+    "stroke": null}
+  }
+  
   "params": [
     {
       "name": "year_select",
