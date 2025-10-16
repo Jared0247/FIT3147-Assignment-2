@@ -56,7 +56,8 @@
           {
             "field": "Number of Fires",
             "type": "quantitative",
-            "title": "Fire Count"
+            "title": "Fire Count",
+            "format": ","
           }
         ]
       }
