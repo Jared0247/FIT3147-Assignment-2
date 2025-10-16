@@ -1,5 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Total Air Pollution in Australia (2017–2023)"
+  },
   "config": {"view": {"continuousWidth": 700, "continuousHeight": 300, "stroke": null}},
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
