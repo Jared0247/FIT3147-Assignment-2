@@ -1,9 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Total Air Pollution in Australia (2017–2023)"
+  "title": {"text": "Total Air Pollution in Australia (2017–2023)",
+  "anchor": "middle"},
+  "config": {
+    "view": {"stroke": null}
   },
-  "config": {"view": {"continuousWidth": 700, "continuousHeight": 300, "stroke": null}},
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/air_quality.csv"
   },
@@ -11,10 +12,7 @@
     {
       "width": 700,
       "height": 300,
-      "mark": {
-        "type": "area",
-        "color": "#1f77b4"
-      },
+      "mark": {"type": "area", "color": "#1f77b4"},
       "transform": [
         {
           "aggregate": [
@@ -36,8 +34,18 @@
           "axis": {"title": "Average Air Pollution"}
         },
         "tooltip": [
-          {"field": "year", "type": "quantitative", "title": "Year", "format": "d"},
-          {"field": "avg_air_pollution", "type": "quantitative", "title": "Average Air Pollution", "format": ".1f"}
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "avg_air_pollution",
+            "type": "quantitative",
+            "title": "Average Air Pollution",
+            "format": ".1f"
+          }
         ]
       }
     },
@@ -46,10 +54,7 @@
       "height": 80,
       "mark": {"type": "area", "color": "#1f77b4"},
       "params": [
-        {
-          "name": "brush",
-          "select": {"type": "interval", "encodings": ["x"]}
-        }
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
       ],
       "transform": [
         {
