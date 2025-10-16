@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Total Burned Area in Australia (2015–2023)",
-    "fontSize": 18
+    "text": "Total Burned Area in Australia (2015–2023)"
   },
   "width": 700,
   "height": 350,
