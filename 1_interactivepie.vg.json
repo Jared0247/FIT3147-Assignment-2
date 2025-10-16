@@ -1,8 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Distribution of Fire Types in Australia (2015–2023)"
-  },
+  "title": {"text": "Distribution of Fire Types in Australia (2015–2023)"},
   "width": 700,
   "height": 400,
   "data": {
@@ -10,11 +8,7 @@
   },
   "config": {
     "view": {"stroke": null},
-    "legend": {
-      "orient": "right",
-      "titleFontSize": 12,
-      "labelFontSize": 11
-    }
+    "legend": {"orient": "right", "titleFontSize": 12, "labelFontSize": 11}
   },
   "params": [
     {
@@ -50,7 +44,12 @@
         },
         "tooltip": [
           {"field": "fire_type", "type": "nominal", "title": "Fire Type"},
-          {"field": "count", "type": "quantitative", "title": "Number of Fires"},
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Number of Fires",
+            "format": ","
+          },
           {"field": "percent", "type": "quantitative", "title": "Percent (%)"}
         ]
       }
