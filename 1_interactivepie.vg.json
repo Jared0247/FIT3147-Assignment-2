@@ -1,17 +1,24 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Distribution of Fire Types in Australia (2015–2023)", "anchor": "middle", "dy": -10},
+  "title": {
+    "text": "Distribution of Fire Types in Australia (2015–2023)",
+    "anchor": "middle",
+    "dy": -10,
+    "fontSize": 18
+  },
   "width": 700,
   "height": 400,
-
   "data": {
     "url": "https://raw.githubusercontent.com/Jared0247/FIT3147-Assignment-2/main/data/Forestfiredata.csv"
   },
   "config": {
-  "view": {
-    "stroke": null
-  }},
-
+    "view": {"stroke": null},
+    "legend": {
+      "orient": "right",
+      "titleFontSize": 12,
+      "labelFontSize": 11
+    }
+  },
   "params": [
     {
       "name": "year_select",
@@ -25,34 +32,17 @@
       }
     }
   ],
-
   "transform": [
-    {
-      "calculate": "year(toDate(datum.ignition_date))",
-      "as": "year"
-    },
-    {
-      "filter": "datum.year == year_select"
-    },
-    {
-      "filter": "datum.year >= 2015 && datum.year <= 2023"
-    },
-    {
-      "aggregate": [{"op": "count", "as": "count"}],
-      "groupby": ["fire_type"]
-    },
-    {
-      "joinaggregate": [{"op": "sum", "field": "count", "as": "total"}]
-    },
-    {
-      "calculate": "round((datum.count / datum.total) * 100)",
-      "as": "percent"
-    }
+    {"calculate": "year(toDate(datum.ignition_date))", "as": "year"},
+    {"filter": "datum.year == year_select"},
+    {"filter": "datum.year >= 2015 && datum.year <= 2023"},
+    {"aggregate": [{"op": "count", "as": "count"}], "groupby": ["fire_type"]},
+    {"joinaggregate": [{"op": "sum", "field": "count", "as": "total"}]},
+    {"calculate": "round((datum.count / datum.total) * 100)", "as": "percent"}
   ],
-
   "layer": [
     {
-      "mark": {"type": "arc", "innerRadius": 50, "stroke": "#fff"},
+      "mark": {"type": "arc", "innerRadius": 60, "stroke": "#fff"},
       "encoding": {
         "theta": {"field": "count", "type": "quantitative"},
         "color": {
@@ -69,10 +59,33 @@
       }
     },
     {
-      "mark": {"type": "text", "radius": 120, "fill": "black"},
+      "transform": [{"filter": "datum.percent > 5"}],
+      "mark": {
+        "type": "text",
+        "radius": 120,
+        "fill": "black",
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
       "encoding": {
         "theta": {"field": "count", "type": "quantitative", "stack": true},
         "text": {"field": "fire_type", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [
+        {"aggregate": [{"op": "sum", "field": "count", "as": "total"}]}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {"field": "total", "type": "quantitative", "format": ","}
       }
     }
   ]
